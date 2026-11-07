@@ -2,26 +2,33 @@
 
 ## Project Overview
 
-This project is a Linux disk monitoring automation script developed using Bash scripting.
+This project implements a Linux disk usage monitoring solution using Bash scripting.
 
-It monitors disk usage across mounted filesystems and generates warning messages when disk utilization reaches or exceeds a predefined threshold of 80%.
+The script monitors disk utilization across mounted filesystems and checks whether usage has reached or exceeded a configurable threshold (default: 80%).
+
+It displays disk usage status for each monitored filesystem and generates warning messages when utilization reaches the configured limit.
+
+This automation helps Linux administrators and DevOps engineers identify potential storage capacity issues before they impact applications or system operations.
 
 ## Technologies Used
 
-- Linux
-- Bash Scripting
-- Git
-- GitHub
-- AWK
-- Linux Disk Utilities
+- **Operating System:** Linux (Ubuntu)
+- **Scripting:** Bash
+- **Disk Monitoring:** `df`
+- **Text Processing:** `awk`
+- **Version Control:** Git
+- **Code Hosting:** GitHub
 
 ## Project Features
 
-- Monitors disk utilization across filesystems.
-- Uses a configurable disk usage threshold.
-- Generates warning messages when disk usage exceeds the threshold.
-- Displays normal disk usage status.
-- Helps administrators identify potential disk space issues.
+- Monitors disk utilization across mounted filesystems.
+- Uses Linux `df` utility to retrieve disk usage information.
+- Extracts filesystem utilization using AWK.
+- Supports a configurable disk usage threshold.
+- Displays `OK` status when disk usage is below the threshold.
+- Generates warning messages when disk usage reaches or exceeds the threshold.
+- Excludes temporary filesystems such as `tmpfs` and `devtmpfs`.
+- Provides a simple command-line monitoring solution.
 
 ## Project Structure
 
@@ -34,31 +41,33 @@ disk-usage-monitoring/
 
 ## Prerequisites
 
-- Linux operating system or Ubuntu EC2 instance.
+- Linux operating system (Ubuntu recommended).
 - Bash shell.
+- `df` and `awk` utilities.
 - Git installed.
+- Appropriate permissions to execute the script.
 
-## How to Execute
+## Installation and Execution
 
-**Step 1: Clone the repository**
+### Step 1: Clone the Repository
 
 ```bash
 git clone YOUR_GITHUB_REPOSITORY_URL
 ```
 
-**Step 2: Navigate to the project**
+### Step 2: Navigate to the Project Directory
 
 ```bash
 cd disk-usage-monitoring
 ```
 
-**Step 3: Provide execution permissions**
+### Step 3: Provide Execution Permissions
 
 ```bash
 chmod +x disk-monitor.sh
 ```
 
-**Step 4: Run the script**
+### Step 4: Execute the Monitoring Script
 
 ```bash
 ./disk-monitor.sh
@@ -66,40 +75,66 @@ chmod +x disk-monitor.sh
 
 ## Configuration
 
-You can modify the disk usage threshold inside the script:
+The disk utilization threshold is configurable inside the Bash script.
 
 ```bash
 THRESHOLD=80
 ```
 
-For example, change it to `90` to generate warnings at 90% disk utilization.
+For example:
+
+```bash
+THRESHOLD=90
+```
+
+The script will generate a warning when filesystem utilization reaches or exceeds 90%.
 
 ## Expected Output
 
+Example output:
+
 ```text
-OK: Disk usage on /dev/root is at 45%
-Warning: Disk usage on /dev/nvme1n1 is at 85%
+Starting Linux Disk Usage Monitoring...
+
+OK: Disk usage on /dev/root mounted on / is 45%
+
+WARNING: Disk usage on /dev/nvme1n1 mounted on /data is 85%
+
+OK: Disk usage on /dev/nvme2n1 mounted on /backup is 65%
 
 Disk monitoring completed!
 ```
 
-*Output varies depending on the server's actual disk utilization.*
+*Note: Actual output depends on the mounted filesystems and their current disk utilization.*
 
 ## Real-World Use Case
 
-This script can help Linux and DevOps administrators monitor disk utilization on cloud servers such as AWS EC2 instances and identify potential storage capacity issues.
+In production environments, Linux servers host applications, databases, logs, and other critical services.
+
+When disk utilization becomes too high, applications may experience failures, log generation may stop, and databases may encounter storage-related issues.
+
+This Bash script provides basic automated disk utilization monitoring and helps administrators identify filesystems that require storage cleanup or capacity expansion.
+
+It can be used on:
+- AWS EC2 Linux instances.
+- Ubuntu servers.
+- On-premises Linux servers.
+- Virtual machines hosting application workloads.
 
 ## Future Enhancements
 
-- Email notifications for critical disk usage.
-- Automated monitoring using Cron jobs.
-- CloudWatch integration for AWS EC2.
-- Logging monitoring results into a file.
-- Slack notifications for disk usage alerts.
+The project can be extended with additional DevOps automation capabilities:
+
+1. **Cron Job Integration:** Schedule automated disk monitoring at regular intervals.
+2. **Log Management:** Store monitoring results in a log file.
+3. **Email Notifications:** Send alerts when disk utilization reaches a critical threshold.
+4. **Slack Integration:** Send disk utilization alerts to a Slack channel.
+5. **AWS CloudWatch Integration:** Publish disk utilization metrics to CloudWatch using the CloudWatch Agent or custom metrics.
+6. **Docker Integration:** Extend monitoring to containerized environments.
 
 ## Author
 
-AWS Cloud & DevOps Engineer
+**AWS Cloud & DevOps Engineer**
 
-GitHub: Add your GitHub profile URL here
+GitHub: https://github.com/Sameerpbn-github
 
