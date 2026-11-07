@@ -1,0 +1,105 @@
+# Linux Disk Usage Monitoring Using Bash
+
+## Project Overview
+
+This project is a Linux disk monitoring automation script developed using Bash scripting.
+
+It monitors disk usage across mounted filesystems and generates warning messages when disk utilization reaches or exceeds a predefined threshold of 80%.
+
+## Technologies Used
+
+- Linux
+- Bash Scripting
+- Git
+- GitHub
+- AWK
+- Linux Disk Utilities
+
+## Project Features
+
+- Monitors disk utilization across filesystems.
+- Uses a configurable disk usage threshold.
+- Generates warning messages when disk usage exceeds the threshold.
+- Displays normal disk usage status.
+- Helps administrators identify potential disk space issues.
+
+## Project Structure
+
+```text
+disk-usage-monitoring/
+├── disk-monitor.sh
+├── README.md
+└── .gitignore
+```
+
+## Prerequisites
+
+- Linux operating system or Ubuntu EC2 instance.
+- Bash shell.
+- Git installed.
+
+## How to Execute
+
+**Step 1: Clone the repository**
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+```
+
+**Step 2: Navigate to the project**
+
+```bash
+cd disk-usage-monitoring
+```
+
+**Step 3: Provide execution permissions**
+
+```bash
+chmod +x disk-monitor.sh
+```
+
+**Step 4: Run the script**
+
+```bash
+./disk-monitor.sh
+```
+
+## Configuration
+
+You can modify the disk usage threshold inside the script:
+
+```bash
+THRESHOLD=80
+```
+
+For example, change it to `90` to generate warnings at 90% disk utilization.
+
+## Expected Output
+
+```text
+OK: Disk usage on /dev/root is at 45%
+Warning: Disk usage on /dev/nvme1n1 is at 85%
+
+Disk monitoring completed!
+```
+
+*Output varies depending on the server's actual disk utilization.*
+
+## Real-World Use Case
+
+This script can help Linux and DevOps administrators monitor disk utilization on cloud servers such as AWS EC2 instances and identify potential storage capacity issues.
+
+## Future Enhancements
+
+- Email notifications for critical disk usage.
+- Automated monitoring using Cron jobs.
+- CloudWatch integration for AWS EC2.
+- Logging monitoring results into a file.
+- Slack notifications for disk usage alerts.
+
+## Author
+
+AWS Cloud & DevOps Engineer
+
+GitHub: Add your GitHub profile URL here
+
